@@ -10,7 +10,6 @@ public class HourlyControl : MonoBehaviour
     public string now_date;
     public string now_hour;
     public int benzin;
-    //public bool reward;
     public DateTime Now;
     public bool delete;
     public Button RewardButton;
@@ -18,17 +17,12 @@ public class HourlyControl : MonoBehaviour
     bool timerStart;
     float rem;
     TimeSpan diff;
-    //float remaining;
     public Text remainingTime;
     DateTime endingTime;
     TimeSpan remaining;
     float timerRem;
     bool reward = false;
-    //public Slider fuelBar;
-    //public Text remainingTime;
 
-
-        //if reward => playerprefs oldadate e kaydet
     private void Start()
     {
         if (delete) //if delete is true, then delete the oldDate playerPref record
@@ -51,6 +45,7 @@ public class HourlyControl : MonoBehaviour
         }
 
     }
+    
     public void GetReward()
     {
         Debug.Log("GET REWARD");
@@ -58,6 +53,7 @@ public class HourlyControl : MonoBehaviour
         StartCoroutine(CheckDate());
         
     }
+    
     private IEnumerator CheckInternet() //check the internet connection. It's gonna get the date
     {
         WWW www_ = new WWW(urlDate);
@@ -72,6 +68,7 @@ public class HourlyControl : MonoBehaviour
             StartCoroutine(CheckDate());
         }
     }
+    
     private IEnumerator CheckDate() //check date and get time and date
     {
         Debug.Log("Check Date");
@@ -88,9 +85,9 @@ public class HourlyControl : MonoBehaviour
             Debug.Log("new date : " + PlayerPrefs.GetString("oldDate"));
             reward = false;
         }
-        CheckTimeDiff();
-       
+        CheckTimeDiff();       
     }
+    
     public void CheckTimeDiff()
     {
        
@@ -123,14 +120,17 @@ public class HourlyControl : MonoBehaviour
             timerStart = true;
         }
     }
+    
     private void disableButton()
     {
         RewardButton.interactable = false;
     }
+    
     private void enableButton()
     {
         RewardButton.interactable = true;
     }
+    
     private void Update()
     {
         if (timerStart)
@@ -153,35 +153,4 @@ public class HourlyControl : MonoBehaviour
             }
         }
     }
-    //public int GetReward()
-    //{
-    //    if (reward)
-    //    {
-    //        string oldDateStr = PlayerPrefs.GetString("oldDate");
-    //        if (string.IsNullOrEmpty(oldDateStr))
-    //        {
-    //            Debug.Log("First Login");
-    //            PlayerPrefs.SetString("oldDate", Now.ToString());
-    //            enableButton();
-    //            return 0;
-    //        }
-    //        else
-    //        {
-    //            StartCoroutine(CheckDate());
-    //            DateTime nowDate = Now;
-    //            DateTime oldDate = Convert.ToDateTime(oldDateStr);
-    //            TimeSpan diff = nowDate - oldDate;
-    //            Debug.Log("diff: " + diff.TotalMinutes);
-    //            if (diff.TotalMinutes > 2)
-    //            {
-    //                Debug.Log("diff is bigger than 2");
-    //                PlayerPrefs.SetString("oldDate", nowDate.ToString());
-    //                benzin = 4;
-    //            }
-    //            return (int)diff.TotalMinutes;
-    //        }
-    //    }
-    //    else return 6;
-    //}
-
 }
