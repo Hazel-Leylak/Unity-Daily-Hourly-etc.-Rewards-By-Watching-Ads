@@ -29,9 +29,7 @@ public class AdsController : MonoBehaviour, IUnityAdsListener
         // Define conditional logic for each ad completion status:
         if (showResult == ShowResult.Finished)
         {
-            RCC_SceneManager.Instance.activePlayerVehicle.fuelTank = RCC_SceneManager.Instance.activePlayerVehicle.fuelTankCapacity;
-            RCC_SceneManager.Instance.activePlayerVehicle.StartEngine();
-            Debug.Log("Fuel added");
+            //APPLY THE REWARD
         }
         else if (showResult == ShowResult.Skipped)
         {
